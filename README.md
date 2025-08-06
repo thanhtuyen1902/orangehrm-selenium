@@ -1,4 +1,4 @@
-# 🚀 OrangeHRM UI Test Automation Framework
+# 🚀 OrangeHRM UI Automation Project
 
 This is a comprehensive UI Test Automation project for [OrangeHRM](https://www.orangehrm.com/), built with **Java**, **Selenium WebDriver**, **TestNG**, and **Maven**.  
 The framework is designed with the **Page Object Model (POM)** to ensure modularity, reusability, and scalability.
