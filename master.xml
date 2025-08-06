@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Master Suite">
+	<test thread-count="5" name="Test">
+	
+	<parameter name="browser" value="chrome" />
+		<classes>
+		<!-- 	<class name="testCases.TC001_LoginTest" />
+			<class name="testCases.TC006_AddEmployeeTest" /> -->
+			<class name="testCases.TC008_SearchEmployeeTest" />
+			
+		</classes>
+	</test>
+</suite>
