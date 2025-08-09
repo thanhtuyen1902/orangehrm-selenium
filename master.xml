@@ -6,7 +6,7 @@
 		<classes>
 		<!-- 	<class name="testCases.TC001_LoginTest" />
 			<class name="testCases.TC006_AddEmployeeTest" /> -->
-			<class name="testCases.TC008_SearchEmployeeTest" />
+		<class name="testCases.TC008_SearchEmployeeTest" />
 			
 		</classes>
 	</test>

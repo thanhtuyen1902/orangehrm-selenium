@@ -16,10 +16,10 @@ public class BaseTest extends BaseClass{
 		
 	}
 	
-//	@AfterMethod
-//	public void logout() {
-//		hp.clickUserDD();
-//		hp.clickLogout();
-//	}
+	@AfterMethod
+	public void logout() {
+		hp.clickUserDD();
+		hp.clickLogout();
+	}
 	
 }
