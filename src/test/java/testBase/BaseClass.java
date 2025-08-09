@@ -39,10 +39,10 @@ public class BaseClass {
 		
 		
 	}
-//	@AfterClass
-//	public void tearDown() {
-//		driver.quit();
-//	}
+	@AfterClass
+	public void tearDown() {
+		driver.quit();
+	}
 	
 	
 }

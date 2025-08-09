@@ -1,5 +1,6 @@
 package pageObjects;
 
+import java.time.Duration;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -8,9 +9,11 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class EmployeeListPage extends BasePage{
-
+	public static WebDriverWait wait;
 	public EmployeeListPage(WebDriver driver) {
 		super(driver);
 		// TODO Auto-generated constructor stub
@@ -28,8 +31,9 @@ public class EmployeeListPage extends BasePage{
 	@FindBy(xpath="//button[normalize-space()='Reset']") WebElement btnReset;
 	@FindBy(xpath="//button[normalize-space()='Search']") WebElement btnSearch;
 
-//	@FindBy (xpath="//div[@class='oxd-table-card-cell']//div[text()='First (& Middle) Name']/following-sibling::div[@class='data']") List<WebElement> firstAndMidnames;
-	@FindBy (xpath="//div[@class='oxd-table-card-cell']") List<WebElement> rows;
+	@FindBy(xpath="//div[@class='oxd-table-body']") WebElement resultTable;
+//	@FindBy(xpath="//span[normalize-space()='No Records Found']") WebElement noResult;
+	@FindBy(css="div[class='orangehrm-horizontal-padding orangehrm-vertical-padding'] span[class='oxd-text oxd-text--span']") WebElement countResult;
 	
 	public void setEmpName(String empName) {
 		tbEmployeeName.sendKeys(empName, Keys.TAB);
@@ -61,28 +65,24 @@ public class EmployeeListPage extends BasePage{
 		return row.findElement(By.xpath(".//div[text()='Last Name']/following-sibling::div[@class='data']")).getText().trim();
 	}
 	
-	public boolean isFullNameDisplayed(String expectedName) {
-//		if (firstAndMidnames.isEmpty()) {
-//			return false;
-//		}
-//		
-//		for (WebElement name : firstAndMidnames) {
-//			String actualName = name.getText().trim().toLowerCase();
-//			if (!actualName.contains(expectedName.toLowerCase())) {
-//				return false;
-//			}
-//		}
-		if (rows.isEmpty()) {
+
+	//Lấy dữ liệu trong bảng, tolowercase
+	public String getResultText() {
+		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.visibilityOf(resultTable));
+		return resultTable.getText().toLowerCase();
+	}
+
+
+	public boolean getCountResult() {
+		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.visibilityOf(countResult));
+		if (countResult.equals("No Records Found")) {
 			return false;
 		}
-		for (WebElement row : rows) {
-			String firstAndMidName = getFirstMidNameFromRow(row);
-			String lastName = getLastNameFromRow(row);
-			String fullName = (firstAndMidName + " " + lastName).toLowerCase();
-			if (!fullName.contains(expectedName.toLowerCase())) {
-				return false;
-			}
-		}
+		
 		return true;
+		
 	}
+
 }

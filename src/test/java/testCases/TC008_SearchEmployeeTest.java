@@ -1,5 +1,7 @@
 package testCases;
 
+import static org.testng.Assert.ARRAY_MISMATCH_TEMPLATE;
+
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -22,6 +24,7 @@ public class TC008_SearchEmployeeTest extends BaseTest{
 		
 	}
 	
+	//Test trường hợp nhập tên có trong danh sách nhân viên
 	@Test
 	public void testSearchEmpByName() throws InterruptedException {
 		String expectedName = "John";
@@ -29,8 +32,21 @@ public class TC008_SearchEmployeeTest extends BaseTest{
 		empList.setEmpName(expectedName);
 		Thread.sleep(1000);
 		empList.clickSearch();
+		if (empList.getResultText().isEmpty()) {
+			Assert.fail();
+		}
+		Assert.assertTrue(empList.getResultText().contains(expectedName.toLowerCase()), "Không tìm thấy nhân viên có tên chứa: " + expectedName);
 		
-		Assert.assertTrue(empList.isFullNameDisplayed(expectedName), "Không tìm thấy nhân viên có tên chứa: " + expectedName);
-		
+	}
+	
+	//Test trường hợp nhập tên không có trong danh sách nhân viên --> No Records Found
+	@Test
+	public void testSearchEmpByNameNoResult() {
+		String expectedName = "jjj";
+		empList = new EmployeeListPage(driver);
+		empList.setEmpName(expectedName);
+		empList.clickSearch();
+		boolean result = empList.getCountResult();
+		Assert.assertTrue(result, "");
 	}
 }

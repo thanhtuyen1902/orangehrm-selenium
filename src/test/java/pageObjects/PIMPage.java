@@ -1,5 +1,6 @@
 package pageObjects;
 
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 
 
 public class PIMPage extends BasePage{
-
+	
 	public PIMPage(WebDriver driver) {
 		super(driver);
 		// TODO Auto-generated constructor stub
@@ -17,6 +18,7 @@ public class PIMPage extends BasePage{
 	@FindBy(xpath="//a[normalize-space()='Employee List']") WebElement employeeListTab;
 	@FindBy(xpath="//a[normalize-space()='Add Employee']") WebElement addEmployeeTab;
 	@FindBy(xpath="//a[normalize-space()='Reports']") WebElement reportTab;
+	
 	
 	public void clickemployeeListTab() {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -30,5 +32,7 @@ public class PIMPage extends BasePage{
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].click()", reportTab);
 	}
+	
+	
 	
 }

@@ -14,7 +14,6 @@ import testBase.BaseTest;
 public class TC006_AddEmployeeTest extends BaseTest{
 	
 	
-	
 	@Test
 	public void verify_addEmployee() {
 		HomePage hp = new HomePage(driver);
